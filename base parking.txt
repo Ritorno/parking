@@ -1,0 +1,33 @@
+create database pkReal;
+
+use pkReal;
+
+create table vehiculo(
+placa varchar (7) primary key,
+tipVehiculo varchar (25) not null,
+carVehiculo varchar (30) not null
+);
+
+
+create table conductor(
+idConductor Bigint (12) primary key,
+nombCond varchar (10) not null,
+apelCond varchar (10) not null,
+placa varchar (7),
+foreign key (placa) references vehiculo(placa)
+);
+
+create table tiempo(
+tUsado int  primary key,
+fecha varchar (12) not null,
+idConductor Bigint (12),
+foreign key (idConductor) references conductor(idConductor)
+);
+
+
+create table tarifa(
+tarifa int  primary key,
+tiTar varchar (40) not null,
+tUsado int,
+foreign key (tUsado) references tiempo(tUsado)
+);
